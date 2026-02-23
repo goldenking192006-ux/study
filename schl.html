@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RiseUp - Government School Student Support</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f5f7fb;
+}
+nav{
+    display:flex;
+    justify-content:space-between;
+    padding:15px 5%;
+    background:#0f62fe;
+    color:white;
+}
+.logo{
+    font-size:22px;
+    font-weight:bold;
+}
+.hero{
+    text-align:center;
+    padding:60px 20px;
+}
+.hero h1{
+    font-size:40px;
+}
+.btn{
+    padding:10px 20px;
+    background:#0f62fe;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    text-decoration:none;
+}
+section{
+    padding:50px 5%;
+}
+.materials-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+}
+.material-card{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.08);
+}
+.class-badge{
+    background:#0f62fe;
+    color:white;
+    padding:4px 10px;
+    border-radius:20px;
+    font-size:12px;
+}
+.material-buttons{
+    margin-top:15px;
+    display:flex;
+    gap:10px;
+}
+.btn-small{
+    flex:1;
+    text-align:center;
+    padding:8px;
+    border-radius:6px;
+    border:1px solid #0f62fe;
+    text-decoration:none;
+    color:#0f62fe;
+    font-weight:bold;
+}
+.btn-small:hover{
+    background:#0f62fe;
+    color:white;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">📚 RiseUp</div>
+</nav>
+
+<section class="hero">
+    <h1>Your Future Starts Here</h1>
+    <p>Free study materials for Government School students</p>
+</section>
+
+<section>
+    <h2>Free Study Materials</h2>
+    <div class="materials-grid" id="materials-grid"></div>
+</section>
+
+<script>
+
+// =====================
+// MATERIALS DATA
+// =====================
+
+const materials = [
+{ title:'Algebra Fundamentals', class:'10', subject:'Maths', icon:'📘', file:"algebra fundamentals" },
+{ title:'Motion & Forces', class:'10', subject:'Physics', icon:'⚛️', file:'materials/10-physics-motion.pdf' },
+{ title:'Organic Chemistry', class:'11', subject:'Chemistry', icon:'🧪', file:'materials/11-chemistry-organic.pdf' },
+{ title:'Web Development', class:'11', subject:'Computer Science', icon:'💻', file:'materials/11-cs-web.pdf' },
+{ title:'Advanced Calculus', class:'12', subject:'Maths', icon:'📘', file:'materials/12-maths-advanced.pdf' },
+{ title:'Database Systems', class:'12', subject:'Computer Science', icon:'💻', file:'materials/12-cs-db.pdf' }
+];
+
+// =====================
+// RENDER FUNCTION
+// =====================
+
+function renderMaterials() {
+    const grid = document.getElementById("materials-grid");
+    grid.innerHTML = "";
+
+    materials.forEach(material => {
+        const card = document.createElement("div");
+        card.className = "material-card";
+
+        card.innerHTML = `
+            <div>
+                <span class="class-badge">${material.class} Std</span>
+            </div>
+            <h3>${material.icon} ${material.subject}</h3>
+            <p>${material.title}</p>
+
+            <div class="material-buttons">
+                <a href="${material.file}" download class="btn-small">📥 Download</a>
+                <a href="${material.file}" target="_blank" class="btn-small">👁️ View</a>
+            </div>
+        `;
+
+        grid.appendChild(card);
+    });
+}
+
+renderMaterials();
+
+</script>
+
+</body>
+</html>
